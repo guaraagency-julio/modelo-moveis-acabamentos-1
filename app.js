@@ -183,7 +183,7 @@ $('#copy-summary').addEventListener('click',async()=>{
  setTimeout(()=>{button.innerHTML='Copiar resumo <span>⧉</span>'},3000);
 });
 function selectMaterial(item){$('#quote-material').value=item.name;closeDialog(materialDialog);goQuote(1)}
-applications.addEventListener('click',e=>{const a=e.target.closest('[data-application]');if(!a)return;const val=a.dataset.application;const select=$('#quote-aplicacao');if(val.toLowerCase().includes('cozinha'))select.value='Cozinha planejada';else if(val.toLowerCase().includes('armário')||val.toLowerCase().includes('móvei'))select.value='Armários planejados';else if(val.toLowerCase().includes('lav'));select.value=select.value||'';});
+applications.addEventListener('click',e=>{const a=e.target.closest('[data-application]');if(!a)return;const val=normalize(a.dataset.application);const select=$('#quote-aplicacao');if(val.includes('cozinha'))select.value='Cozinha planejada';else if(val.includes('armario')||val.includes('closet')||val.includes('moveis'))select.value='Armários planejados';else if(val.includes('lavatorio')||val.includes('cuba'))select.value='Cuba / Lavatório';else if(val.includes('revestimento')||val.includes('painel'))select.value='Painel e marcenaria';else if(val.includes('escada')||val.includes('soleira'))select.value='Escada / Soleira';else if(val.includes('ilha')||val.includes('gourmet'))select.value='Bancada ou ilha';else select.value='Projeto integrado';});
 
 // FAQ mantém um item aberto por vez
 $$('.faq-items details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)$$('.faq-items details').forEach(o=>{if(o!==d)o.open=false})}));

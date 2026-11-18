@@ -167,12 +167,13 @@ function goQuote(step){
  stepMeter.forEach((el,i)=>el.classList.toggle('active',i<=currentStep));
  $('#step-meter').setAttribute('aria-label','Etapa '+(currentStep+1)+' de 5');
  back.hidden=currentStep===0;next.hidden=currentStep===4;updateStatus(feedback,'');
- if(currentStep===4){summary.textContent=summaryText();const msg='Olá, vi o modelo demonstrativo Atelier Nórd da Guará Agency e gostaria de conversar sobre um site desse tipo.\n\nResumo de simulação:\n'+summaryText();whatsapp.href='https://wa.me/5532976718309?text='+encodeURIComponent(msg)}
+ if(currentStep===4){summary.textContent=summaryText()}
  $('#orcamento').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
 }
 next.addEventListener('click',()=>{if(checkStep(currentStep))goQuote(currentStep+1)});
 back.addEventListener('click',()=>goQuote(currentStep-1));
 form.addEventListener('submit',e=>e.preventDefault());
+whatsapp.addEventListener('click',()=>updateStatus(feedback,'Solicitação simulada. Nenhum dado foi enviado.'));
 form.addEventListener('input',e=>{if(e.target.matches('[aria-invalid="true"]'))e.target.removeAttribute('aria-invalid')});
 $('#copy-summary').addEventListener('click',async()=>{
  const t=summaryText();const button=$('#copy-summary');let copied=false;
